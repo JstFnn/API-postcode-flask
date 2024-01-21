@@ -92,7 +92,11 @@ def kode():
                 return jsonify({'message': 'Update sukses! Data berhasil diperbarui.'}), 200
 
             elif request.method == 'DELETE':
+
                 delete_id = request.form.get('id')
+
+                if delete_id is None:
+                    return jsonify({'message': 'Missing parameters'}), 400              
 
                 query_delete = """DELETE FROM kodePos WHERE id=%s"""
 
